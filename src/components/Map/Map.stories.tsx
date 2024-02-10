@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Map from "./Map";
 
@@ -15,8 +16,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * Wrapper to define a minimum size to height and width for the Map Container.
+ * This way the Map component can be rendered correctly.
+ * @returns The Map component wrapped in a div with a pre-defined size.
+ */
+const WrappedMap = () => {
+  return (
+    <div style={{ width: "600px", height: "600px" }}>
+      <Map id="wrapped-map" />
+    </div>
+  );
+};
+
 export const Default: Story = {
   args: {
     id: "my-map",
   },
+  render: () => <WrappedMap />,
 };
